@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="nso">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1a1a2e">
+    <title>Nso' Calendar - Ndìn Vishìíy</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="calendar-header">
+            <div class="header-top">
+                <h1 class="app-title">Ndìn Vishìíy</h1>
+                <span class="app-subtitle">Nso' Calendar</span>
+            </div>
+            <div class="gregorian-today" id="gregorianToday"></div>
+        </header>
+
+        <!-- Month Navigation -->
+        <div class="month-nav">
+            <button class="nav-btn" id="prevMonth" aria-label="Previous month">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+            <div class="month-display">
+                <h2 class="nso-month" id="nsoMonth"></h2>
+                <span class="gregorian-month" id="gregorianMonth"></span>
+            </div>
+            <button class="nav-btn" id="nextMonth" aria-label="Next month">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+        </div>
+
+        <!-- Weekday Headers -->
+        <div class="weekday-row" id="weekdayHeaders"></div>
+
+        <!-- Calendar Grid -->
+        <div class="calendar-grid" id="calendarGrid"></div>
+
+        <!-- Today Button -->
+        <button class="today-btn" id="todayBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            Lán (Today)
+        </button>
+
+        <!-- Legend -->
+        <div class="legend">
+            <span class="legend-text">8-day week cycle  |  Today = </span>
+            <span class="legend-today" id="legendTodayName"></span>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
