@@ -399,7 +399,7 @@ body {
 .author-name {
     font-size: 1.1rem;
     font-weight: 700;
-    color: #1e3a5f;
+    color: var(--text-muted);
 }
 
 .about-version {
