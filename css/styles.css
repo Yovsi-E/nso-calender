@@ -151,6 +151,11 @@ body {
     font-weight: 700;
 }
 
+.weekday-header.sunday-col {
+    color: var(--gold);
+    font-weight: 700;
+}
+
 /* Calendar Grid */
 .calendar-grid {
     display: grid;
@@ -190,6 +195,13 @@ body {
     font-weight: 700;
     border: 2px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 0 16px var(--accent-glow);
+}
+
+.day-cell.country-sunday {
+    background: rgba(240, 165, 0, 0.15);
+    border: 1px solid rgba(240, 165, 0, 0.35);
+    color: var(--gold);
+    font-weight: 600;
 }
 
 .day-cell.other-month {

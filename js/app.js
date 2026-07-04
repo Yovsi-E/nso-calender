@@ -103,11 +103,14 @@ const ENGLISH_WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'
 function renderWeekdayHeaders() {
     const container = document.getElementById('weekdayHeaders');
     const today = new Date();
+    const todayIndex = getNsoWeekdayIndex(today);
     const todayGregorian = today.getDay();
 
-    container.innerHTML = ENGLISH_WEEKDAYS.map((day, i) => {
-        const isTodayCol = i === todayGregorian;
-        return `<div class="weekday-header${isTodayCol ? ' today-col' : ''}">${day}</div>`;
+    container.innerHTML = NSO_WEEKDAYS.map((nsoDay, i) => {
+        let cls = 'weekday-header';
+        if (i === todayGregorian) cls += ' today-col';
+        if (nsoDay === 'Kiloòvey' || nsoDay === 'Ngòylúm') cls += ' sunday-col';
+        return `<div class="${cls}">${ENGLISH_WEEKDAYS[i]}</div>`;
     }).join('');
 }
 
@@ -122,6 +125,7 @@ function renderCalendar() {
 
         let cls = 'day-cell';
         if (cell.isToday) cls += ' today';
+        if (cell.nsoDay === 'Kiloòvey' || cell.nsoDay === 'Ngòylúm') cls += ' country-sunday';
         if (!cell.isCurrentMonth) cls += ' other-month';
 
         return `
