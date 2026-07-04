@@ -15,39 +15,84 @@
                 <h1 class="app-title">Ndìn Vishìíy</h1>
                 <span class="app-subtitle">NSO' WEEKLY CALENDAR</span>
             </div>
-            <div class="gregorian-today" id="gregorianToday"></div>
         </header>
 
-        <!-- Month Navigation -->
-        <div class="month-nav">
-            <button class="nav-btn" id="prevMonth" aria-label="Previous month">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-            </button>
-            <div class="month-display">
-                <h2 class="nso-month" id="nsoMonth"></h2>
-                <span class="gregorian-month" id="gregorianMonth"></span>
+        <!-- TAB: Today View -->
+        <div class="tab-content active" id="tab-today">
+            <div class="today-view">
+                <div class="today-badge">Lán</div>
+                <div class="today-nso-day" id="todayNsoDay"></div>
+                <div class="today-gregorian" id="todayGregorianFull"></div>
+                <div class="today-info-row">
+                    <div class="today-info-card">
+                        <span class="info-label">Nso' Month</span>
+                        <span class="info-value" id="todayNsoMonth"></span>
+                    </div>
+                    <div class="today-info-card">
+                        <span class="info-label">Gregorian</span>
+                        <span class="info-value" id="todayGregShort"></span>
+                    </div>
+                </div>
             </div>
-            <button class="nav-btn" id="nextMonth" aria-label="Next month">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </div>
+
+        <!-- TAB: Month View -->
+        <div class="tab-content" id="tab-month">
+            <div class="month-nav">
+                <button class="nav-btn" id="prevMonth">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <div class="month-display">
+                    <h2 class="nso-month" id="nsoMonth"></h2>
+                    <span class="gregorian-month" id="gregorianMonth"></span>
+                </div>
+                <button class="nav-btn" id="nextMonth">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+            </div>
+            <div class="weekday-row" id="weekdayHeaders"></div>
+            <div class="calendar-grid" id="calendarGrid"></div>
+            <button class="today-btn" id="todayBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                Lán (Today)
             </button>
         </div>
 
-        <!-- Weekday Headers -->
-        <div class="weekday-row" id="weekdayHeaders"></div>
-
-        <!-- Calendar Grid -->
-        <div class="calendar-grid" id="calendarGrid"></div>
-
-        <!-- Today Button -->
-        <button class="today-btn" id="todayBtn">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-            Lán (Today)
-        </button>
-
-        <!-- Footer -->
-        <div class="legend">
-            <span class="legend-text">@Yovsi_E</span>
+        <!-- TAB: About App -->
+        <div class="tab-content" id="tab-about">
+            <div class="about-view">
+                <div class="about-icon">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                </div>
+                <h2 class="about-title">Ndìn Vishìíy</h2>
+                <p class="about-subtitle">NSO' WEEKLY CALENDAR</p>
+                <p class="about-desc">
+                    An 8-day weekly calendar in the Nso' dialect, displaying traditional weekday 
+                    and month names alongside the Gregorian calendar.
+                </p>
+                <div class="about-author">
+                    <span class="author-label">Developed by</span>
+                    <span class="author-name">@Yovsi_E</span>
+                </div>
+                <div class="about-version">Version 1.0</div>
+            </div>
         </div>
+
+        <!-- Bottom Tab Navigation -->
+        <nav class="bottom-tabs">
+            <button class="tab-btn active" data-tab="today">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <span>Today</span>
+            </button>
+            <button class="tab-btn" data-tab="month">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                <span>Month</span>
+            </button>
+            <button class="tab-btn" data-tab="about">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                <span>About</span>
+            </button>
+        </nav>
     </div>
 
     <script src="js/app.js"></script>

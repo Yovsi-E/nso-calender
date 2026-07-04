@@ -141,14 +141,6 @@ function renderCalendar() {
     document.getElementById('legendTodayName').textContent = getNsoWeekdayName(today);
 }
 
-function renderGregorianToday() {
-    const today = new Date();
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    const nsoDay = getNsoWeekdayName(today);
-    const gregStr = today.toLocaleDateString('en-US', options);
-    document.getElementById('gregorianToday').textContent = `${gregStr}  |  Nso': ${nsoDay}`;
-}
-
 function goToToday() {
     const today = new Date();
     currentMonth = today.getMonth();
@@ -174,22 +166,55 @@ function goToNextMonth() {
     renderAll();
 }
 
+// Swipe gesture support
+let touchStartX = 0;
+let touchStartY = 0;
+
+function renderTodayView() {
+    const today = new Date();
+    document.getElementById('todayNsoDay').textContent = getNsoWeekdayName(today);
+    document.getElementById('todayGregorianFull').textContent = today.toLocaleDateString('en-US', {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+    });
+    document.getElementById('todayNsoMonth').textContent = getNsoMonthName(today.getMonth());
+    document.getElementById('todayGregShort').textContent = today.toLocaleDateString('en-US', {
+        month: 'short', day: 'numeric', year: 'numeric'
+    });
+}
+
+function switchTab(tabName) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+
+    document.getElementById('tab-' + tabName).classList.add('active');
+    document.querySelector(`.tab-btn[data-tab="${tabName}"]`).classList.add('active');
+}
+
 function renderAll() {
     renderWeekdayHeaders();
     renderCalendar();
-    renderGregorianToday();
+    renderTodayView();
 }
 
-// Swipe gesture support
+// Swipe gesture support (only in month tab)
 let touchStartX = 0;
 let touchStartY = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
     renderAll();
 
+    // Tab switching
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+    });
+
+    // Month navigation
     document.getElementById('prevMonth').addEventListener('click', goToPrevMonth);
     document.getElementById('nextMonth').addEventListener('click', goToNextMonth);
-    document.getElementById('todayBtn').addEventListener('click', goToToday);
+    document.getElementById('todayBtn').addEventListener('click', () => {
+        goToToday();
+        switchTab('month');
+    });
 
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
@@ -217,27 +242,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, { passive: true });
 
-    // Day cell click shows detail
+    // Day cell click
     document.getElementById('calendarGrid').addEventListener('click', (e) => {
         const cell = e.target.closest('.day-cell');
         if (!cell || cell.classList.contains('empty')) return;
 
-        const date = new Date(cell.dataset.date);
-        const nsoDay = getNsoWeekdayName(date);
-        const nsoMonth = getNsoMonthName(date.getMonth());
-        const gregDate = date.toLocaleDateString('en-US', {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-
-        // Simple tap feedback
         cell.style.transform = 'scale(0.9)';
         setTimeout(() => { cell.style.transform = ''; }, 150);
-
-        // Could show a modal here - for now, update the header
-        document.getElementById('gregorianToday').textContent =
-            `${gregDate}  |  Nso': ${nsoDay}, ${nsoMonth}`;
     });
 });
