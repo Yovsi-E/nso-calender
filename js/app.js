@@ -136,9 +136,6 @@ function renderCalendar() {
     document.getElementById('nsoMonth').textContent = getNsoMonthName(currentMonth);
     document.getElementById('gregorianMonth').textContent = `${GREGORIAN_MONTHS[currentMonth]} ${currentYear}`;
 
-    // Update legend
-    const today = new Date();
-    document.getElementById('legendTodayName').textContent = getNsoWeekdayName(today);
 }
 
 function goToToday() {
@@ -166,10 +163,6 @@ function goToNextMonth() {
     renderAll();
 }
 
-// Swipe gesture support
-let touchStartX = 0;
-let touchStartY = 0;
-
 function renderTodayView() {
     const today = new Date();
     document.getElementById('todayNsoDay').textContent = getNsoWeekdayName(today);
@@ -188,6 +181,14 @@ function switchTab(tabName) {
 
     document.getElementById('tab-' + tabName).classList.add('active');
     document.querySelector(`.tab-btn[data-tab="${tabName}"]`).classList.add('active');
+
+    if (tabName === 'month') {
+        renderWeekdayHeaders();
+        renderCalendar();
+    }
+    if (tabName === 'today') {
+        renderTodayView();
+    }
 }
 
 function renderAll() {
