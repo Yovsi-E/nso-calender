@@ -129,9 +129,9 @@ function renderCalendar() {
         if (!cell.isCurrentMonth) cls += ' other-month';
 
         return `
-            <div class="${cls}" data-date="${cell.fullDate.toISOString()}" title="${cell.nsoDay}">
+            <div class="${cls}" data-date="${cell.fullDate.toISOString()}" title="${cell.nsoDay || ''}">
                 <span class="gregorian-date">${cell.date}</span>
-                <span class="nso-day-label">${cell.nsoDay}</span>
+                <span class="nso-day-label">${cell.nsoDay || ''}</span>
             </div>
         `;
     }).join('');
